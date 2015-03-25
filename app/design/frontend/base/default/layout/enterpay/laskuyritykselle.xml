@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <checkout_onepage_index>
+
+        <reference name="head">
+
+            <!-- Add LaskuYritykselle CSS to checkout page. -->
+            <action method="addItem" ifconfig="payment/laskuyritykselle/active">
+                <type>skin_css</type>
+                <name>css/enterpay/laskuyritykselle/info.css</name>
+            </action>
+
+        </reference>
+
+    </checkout_onepage_index>
+
+</layout>

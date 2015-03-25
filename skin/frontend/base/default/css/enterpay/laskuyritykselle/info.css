@@ -1,0 +1,14 @@
+.laskuyritykselle_info {
+  background: #e95f5b;
+  color: #ffffff;
+  padding: 1em;
+}
+
+.laskuyritykselle_info p {
+  margin-top: 1em;
+}
+
+.laskuyritykselle_info p a {
+  color: #ffffff;
+  text-decoration: underline;
+}

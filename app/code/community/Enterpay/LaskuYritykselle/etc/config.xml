@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+
+<config>
+
+    <modules>
+        <Enterpay_LaskuYritykselle>
+            <version>1.0.9</version>
+        </Enterpay_LaskuYritykselle>
+    </modules>
+
+    <global>
+
+        <models>
+            <laskuyritykselle>
+                <class>Enterpay_LaskuYritykselle_Model</class>
+            </laskuyritykselle>
+        </models>
+
+        <helpers>
+            <laskuyritykselle>
+                <class>Enterpay_LaskuYritykselle_Helper</class>
+            </laskuyritykselle>
+        </helpers>
+
+        <blocks>
+            <laskuyritykselle>
+                <class>Enterpay_LaskuYritykselle_Block</class>
+            </laskuyritykselle>
+            <sales>
+                <rewrite>
+                    <order_totals>Enterpay_LaskuYritykselle_Block_Sales_Order_Totals</order_totals>
+                    <order_invoice_totals>Enterpay_LaskuYritykselle_Block_Sales_Order_Invoice_Totals</order_invoice_totals>
+                    <order_creditmemo_totals>Enterpay_LaskuYritykselle_Block_Sales_Order_Creditmemo_Totals</order_creditmemo_totals>
+                </rewrite>
+            </sales>
+            <adminhtml>
+                <rewrite>
+                    <sales_totals>Enterpay_LaskuYritykselle_Block_Adminhtml_Sales_Totals
+                    </sales_totals>
+                    <sales_order_totals>Enterpay_LaskuYritykselle_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
+                    <sales_order_invoice_totals>Enterpay_LaskuYritykselle_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Enterpay_LaskuYritykselle_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <events>
+            <sales_model_service_quote_submit_after>
+                <observers>
+                    <Enterpay_LaskuYritykselle_Model_Observer>
+                        <type>singleton</type>
+                        <class>Enterpay_LaskuYritykselle_Model_Observer</class>
+                        <method>sales_model_service_quote_submit_after</method>
+                    </Enterpay_LaskuYritykselle_Model_Observer>
+                </observers>
+            </sales_model_service_quote_submit_after>
+        </events>
+
+        <resources>
+            <laskuyritykselle_setup>
+                <setup>
+                    <module>Enterpay_LaskuYritykselle</module>
+                    <class>Mage_Catalog_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </laskuyritykselle_setup>
+            <laskuyritykselle_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </laskuyritykselle_read>
+            <laskuyritykselle_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </laskuyritykselle_write>
+        </resources>
+
+        <fieldsets>
+            <sales_convert_quote>
+                <base_payment_charge>
+                    <to_order>*</to_order>
+                </base_payment_charge>
+                <payment_charge>
+                    <to_order>*</to_order>
+                </payment_charge>
+            </sales_convert_quote>
+        </fieldsets>
+
+        <sales>
+            <quote>
+                <totals>
+                    <payment_charge>
+                        <class>laskuyritykselle/sales_quote_address_total_paymentcharge</class>
+                        <before>grand_total</before>
+                        <after>shipping,tax</after>
+                    </payment_charge>
+                </totals>
+            </quote>
+            <order_invoice>
+                <totals>
+                    <payment_charge>
+                        <class>laskuyritykselle/sales_order_invoice_total_paymentcharge</class>
+                    </payment_charge>
+                </totals>
+            </order_invoice>
+            <order_creditmemo>
+                <totals>
+                    <payment_charge>
+                        <class>laskuyritykselle/sales_order_creditmemo_total_paymentcharge</class>
+                    </payment_charge>
+                </totals>
+            </order_creditmemo>
+        </sales>
+
+        <pdf>
+            <totals>
+                <payment_charge translate="title">
+                    <title>Payment Charge</title>
+                    <source_field>payment_charge</source_field>
+                    <amount_prefix></amount_prefix>
+                    <font_size>7</font_size>
+                    <display_zero>0</display_zero>
+                    <sort_order>200</sort_order>
+                </payment_charge>
+            </totals>
+        </pdf>
+
+    </global>
+
+    <frontend>
+
+        <routers>
+            <laskuyritykselle>
+                <use>standard</use>
+                <args>
+                    <module>Enterpay_LaskuYritykselle</module>
+                    <frontName>laskuyritykselle</frontName>
+                </args>
+            </laskuyritykselle>
+        </routers>
+
+        <secure_url>
+            <laskuyritykselle_redirect>/laskuyritykselle/redirect/</laskuyritykselle_redirect>
+        </secure_url>
+
+        <layout>
+            <updates>
+                <laskuyritykselle>
+                    <file>enterpay/laskuyritykselle.xml</file>
+                </laskuyritykselle>
+            </updates>
+        </layout>
+
+    </frontend>
+
+    <default>
+        <payment>
+            <laskuyritykselle>
+                <active>0</active>
+                <model>laskuyritykselle/checkout</model>
+                <tax_included>0</tax_included>
+                <payment_charge_tax>24</payment_charge_tax>
+                <title>LaskuYritykselle.fi</title>
+                <checkout_info>laskuyritykselle_info</checkout_info>
+                <sort_order>1</sort_order>
+                <success_route>checkout/onepage/success</success_route>
+                <default_route>checkout/onepage</default_route>
+                <production>0</production>
+                <debug>0</debug>
+            </laskuyritykselle>
+        </payment>
+    </default>
+
+</config>

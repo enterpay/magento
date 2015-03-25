@@ -1,0 +1,12 @@
+<?php
+
+/**
+ *  Show LaskuYritykselle info as static block.
+ */
+
+$blockId = Mage::getStoreConfig('payment/laskuyritykselle/checkout_info');
+
+echo $this->getLayout()->createBlock('cms/block')->setBlockId($blockId)
+    ->toHtml();
+
+?>

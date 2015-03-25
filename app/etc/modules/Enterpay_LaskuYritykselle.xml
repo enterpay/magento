@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config>
+    <modules>
+        <Enterpay_LaskuYritykselle>
+            <version>1.0.9</version>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment />
+            </depends>
+        </Enterpay_LaskuYritykselle>
+    </modules>
+</config>
