@@ -5,8 +5,11 @@
  */
 
 $blockId = Mage::getStoreConfig('payment/laskuyritykselle/checkout_info');
-
+?>
+<ul class="form-list" id="payment_form_laskuyritykselle" style="display:none;">
+<?php
 echo $this->getLayout()->createBlock('cms/block')->setBlockId($blockId)
     ->toHtml();
 
 ?>
+</ul>

@@ -1,7 +1,10 @@
 .laskuyritykselle_info {
-  background: #e95f5b;
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   padding: 1em;
+  border-width: 1px;
+  border-color: #ff7477;
+  border-style: solid;
 }
 
 .laskuyritykselle_info p {
@@ -9,6 +12,6 @@
 }
 
 .laskuyritykselle_info p a {
-  color: #ffffff;
+  color: #000000;
   text-decoration: underline;
 }

@@ -4,7 +4,7 @@
 
     <modules>
         <Enterpay_LaskuYritykselle>
-            <version>1.0.9</version>
+            <version>1.1.0</version>
         </Enterpay_LaskuYritykselle>
     </modules>
 
@@ -95,7 +95,7 @@
                     <payment_charge>
                         <class>laskuyritykselle/sales_quote_address_total_paymentcharge</class>
                         <before>grand_total</before>
-                        <after>shipping,tax</after>
+                        <after>subtotal,discount,shipping,tax</after>
                     </payment_charge>
                 </totals>
             </quote>
@@ -163,11 +163,12 @@
                 <model>laskuyritykselle/checkout</model>
                 <tax_included>0</tax_included>
                 <payment_charge_tax>24</payment_charge_tax>
-                <title>LaskuYritykselle.fi</title>
+                <title>Lasku yritykselle</title>
                 <checkout_info>laskuyritykselle_info</checkout_info>
                 <sort_order>1</sort_order>
                 <success_route>checkout/onepage/success</success_route>
                 <default_route>checkout/onepage</default_route>
+				<key_version>1</key_version>
                 <production>0</production>
                 <debug>0</debug>
             </laskuyritykselle>

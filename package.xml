@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package>
     <name>Enterpay_LaskuYritykselle</name>
-    <version>1.0.9</version>
+    <version>1.1.0</version>
     <stability>stable</stability>
     <license uri="http://opensource.org/licenses/osl-3.0.php">OSL 3.0</license>
     <channel>community</channel>
     <extends/>
-    <summary>Payment module for LaskuYritykselle.fi.</summary>
-    <description>Payment module for LaskuYritykselle.fi.</description>
+    <summary>Payment module for Lasku yritykselle</summary>
+    <description>Payment module for Lasku yritykselle</description>
     <notes>Production version</notes>
     <authors><author><name>Tony Tr&#xE4;skelin</name><user>tonytras</user><email>tony.traskelin@enterpay.fi</email></author></authors>
     <date>2014-12-11</date>
