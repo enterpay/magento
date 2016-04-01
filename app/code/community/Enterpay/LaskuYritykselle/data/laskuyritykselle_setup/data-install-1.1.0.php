@@ -15,7 +15,7 @@ try {
 
         $blockContent = '<div class="laskuyritykselle_info">
   <img src="{{skin url=\'images/enterpay/laskuyritykselle/logo.png\'}}" />
-  <p>{{config path=\'payment/laskuyritykselle/title\'}} on yritysten tarpeisiin kehitetty kätevä ja nopea verkkomaksamisen ratkaisu. Valitsemalla {{config path=\'payment/laskuyritykselle/title\'}} maksutavan saat yrityksellesi ostokset laskulla valitsemallasi tavalla toimitettuna. Maksutapa on ostavalle yritykselle maksuton palvelu.</p>
+  <p>Lasku yritykselle on yritysten tarpeisiin kehitetty kätevä ja nopea verkkomaksamisen ratkaisu. Valitsemalla Lasku yritykselle -maksutavan saat yrityksellesi ostokset laskulla valitsemallasi tavalla toimitettuna. Maksutapa on ostavalle yritykselle maksuton palvelu.</p>
   <p><a href="http://www.enterpay.fi/ostajalle/" target="_blank">Lue lisää</a></p>
 </div>';
 
