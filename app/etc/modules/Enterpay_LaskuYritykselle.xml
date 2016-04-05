@@ -3,7 +3,7 @@
 <config>
     <modules>
         <Enterpay_LaskuYritykselle>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
             <active>true</active>
             <codePool>community</codePool>
             <depends>

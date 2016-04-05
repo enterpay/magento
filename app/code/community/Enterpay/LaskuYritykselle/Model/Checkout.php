@@ -137,17 +137,25 @@ class Enterpay_LaskuYritykselle_Model_Checkout
                 if ($item->getParentItem()) {
                     continue;
                 }
+				$quantity = 0;
+				if ($item->getProduct()->getTypeID() == 'bundle') {
+					$quantity = 1;
+				}
+				else {
+					$quantity = $item->getQtyToInvoice();
+				}
                 $fields["cart_items[$basket_item_count][identifier]"] =
                     $item->getProductId();
                 $fields["cart_items[$basket_item_count][name]"] =
                     $this->_sanitise($item->getName(), 200);
+				
                 $fields["cart_items[$basket_item_count][quantity]"] =
-                    $item->getQtyToInvoice();
+                    $quantity;
                 $items_gross_price += round($item->getPriceInclTax() * 100 *
-                    $item->getQtyToInvoice(), 0
+                    $quantity, 0
                 );
                 $items_net_price += round($item->getPrice() * 100 *
-                    $item->getQtyToInvoice(), 0
+                    $quantity, 0
                 );
                 if ($this->getConfigData('tax_included') == 1) {
                     $fields["cart_items[$basket_item_count][unit_price_including_tax]"] =
@@ -156,8 +164,15 @@ class Enterpay_LaskuYritykselle_Model_Checkout
                     $fields["cart_items[$basket_item_count][unit_price_excluding_tax]"] =
                         round($item->getPrice() * 100, 0);
                 }
-                $fields["cart_items[$basket_item_count][tax_rate]"] =
-                    round($item->getTaxPercent() / 100, 2);
+				if ($item->getProduct()->getTypeID() == 'bundle') {
+					$fields["cart_items[$basket_item_count][tax_rate]"] = 
+						round(($item->getPriceInclTax() - $item->getPrice()) / $item->getPrice(), 2);
+				}
+				else {
+					$fields["cart_items[$basket_item_count][tax_rate]"] =
+						round($item->getTaxPercent() / 100, 2);
+				}
+                
                 $basket_item_count++;
             }
         }
@@ -219,7 +234,7 @@ class Enterpay_LaskuYritykselle_Model_Checkout
             $basket_item_count++;
 
         }
-        // discount
+        // discount if sum of the cart items and total doesn't match
         if (abs($order_gross_amount - $items_gross_price) > 1) {
             $fields["cart_items[$basket_item_count][identifier]"] = '0';
             $fields["cart_items[$basket_item_count][name]"] = __('Discount');
