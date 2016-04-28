@@ -145,7 +145,7 @@ class Enterpay_LaskuYritykselle_Model_Checkout
 					$quantity = $item->getQtyToInvoice();
 				}
                 $fields["cart_items[$basket_item_count][identifier]"] =
-                    $item->getProductId();
+                    $item->getSku();
                 $fields["cart_items[$basket_item_count][name]"] =
                     $this->_sanitise($item->getName(), 200);
 				
