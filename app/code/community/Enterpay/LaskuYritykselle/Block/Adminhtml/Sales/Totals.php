@@ -18,7 +18,7 @@ class Enterpay_LaskuYritykselle_Block_Adminhtml_Sales_Totals
         /**
          *   Add payment charge to totals.
          */
-
+        $helper = Mage::helper("laskuyritykselle");
         $totals = $this->_totals;
         $newTotals = array();
 
@@ -32,7 +32,7 @@ class Enterpay_LaskuYritykselle_Block_Adminhtml_Sales_Totals
                         $newTotals['payment_charge'] = new Varien_Object(array(
                                 'code' => 'payment_charge',
                                 'field' => 'payment_charge',
-                                'value' => $source->getPaymentCharge(),
+                                'value' =>  $source->getPaymentCharge() + ($helper->showPaymentChargeInclTax()?$helper->getPaymentChargeTaxAmount($source->getPaymentCharge(), $helper->getPaymentChargeTaxRate()):0),
                                 'label' => $this->__('Payment Charge')
                             )
                         );

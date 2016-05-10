@@ -25,7 +25,7 @@ class Enterpay_LaskuYritykselle_Helper_Data extends Mage_Core_Helper_Abstract
             $paymentCharge += ($address->getSubtotalInclTax() + $address->getShippingInclTax() + $address->getTaxAmount()) * ($chargePercentage / 100);
         }
 
-        return $paymentCharge;
+        return $paymentCharge - $this->getPaymentChargeTaxAMount($paymentCharge, $this->getPaymentChargeTaxRate(), true);
 
     }
 
@@ -55,8 +55,12 @@ class Enterpay_LaskuYritykselle_Helper_Data extends Mage_Core_Helper_Abstract
 
     }
 
-    public function getPaymentChargeTaxAmount($chargeAmount = 0, $taxRate = 0) {
-        return $chargeAmount * (1 - 100 / ($taxRate + 100));
+    public function getPaymentChargeTaxAmount($chargeAmount = 0, $taxRate = 0, $taxIncluded = false) {
+        if($taxIncluded) {
+            return $chargeAmount - ($chargeAmount / (1+($taxRate/100)));
+        } else {
+        return $chargeAmount * ($taxRate/100);
+        }
     }
 
     public function showPaymentChargeInclTax() {

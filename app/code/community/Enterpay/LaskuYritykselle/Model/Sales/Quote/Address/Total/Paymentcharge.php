@@ -59,6 +59,9 @@ class Enterpay_LaskuYritykselle_Model_Sales_Quote_Address_Total_Paymentcharge
             );
             $address->setTaxAmount($address->getTaxAmount() + $taxAmount);
 
+            $address->setGrandTotal($address->getGrandTotal() + $taxAmount);
+            $address->setBaseGrandTotal($address->getBaseGrandTotal() + $taxAmount);
+
         }
 
         return $this;
@@ -77,13 +80,10 @@ class Enterpay_LaskuYritykselle_Model_Sales_Quote_Address_Total_Paymentcharge
 
             // Hide taxes from amount if set so.
 
-            if (!$helper->showPaymentChargeInclTax()) {
+            if ($helper->showPaymentChargeInclTax()) {
                 $paymentChargeTaxRate = $helper->getPaymentChargeTaxRate();
-                $taxAmount = $helper->getPaymentChargeTaxAmount($paymentCharge,
-                    $paymentChargeTaxRate
-                );
+                $paymentCharge = $paymentCharge * (1+($paymentChargeTaxRate/100));
 
-                $paymentCharge -= $taxAmount;
             }
 
             if (isset($paymentCharge) && $paymentCharge != 0) {
