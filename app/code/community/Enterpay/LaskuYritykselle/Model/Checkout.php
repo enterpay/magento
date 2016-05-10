@@ -204,14 +204,13 @@ class Enterpay_LaskuYritykselle_Model_Checkout
 
             $helper = Mage::helper("laskuyritykselle");
 
-            $paymentCharge = $order->getPaymentCharge();
+            $paymentChargeExclTax = $order->getPaymentCharge();
 
             $taxRate = $helper->getPaymentChargeTaxRate();
-            $taxAmount = $helper->getPaymentChargeTaxAmount($paymentCharge,
-                $taxRate
-            );
+            $taxAmount = $helper->getPaymentChargeTaxAmount($paymentChargeExclTax,
+                $taxRate);
 
-            $paymentChargeExclTax = $paymentCharge - $taxAmount;
+            $paymentCharge = $paymentChargeExclTax + $taxAmount;
 
             $fields["cart_items[$basket_item_count][identifier]"] = '0';
             $fields["cart_items[$basket_item_count][name]"] =

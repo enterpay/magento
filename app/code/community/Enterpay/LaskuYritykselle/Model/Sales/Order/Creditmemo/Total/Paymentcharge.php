@@ -5,6 +5,7 @@ class Enterpay_LaskuYritykselle_Model_Sales_Order_Creditmemo_Total_Paymentcharge
 {
 
     public function collect(Mage_Sales_Model_Order_Creditmemo $creditmemo) {
+        $helper = Mage::helper("laskuyritykselle");
         $creditmemo->setPaymentCharge(0);
         $creditmemo->setBasePaymentCharge(0);
 
@@ -15,10 +16,12 @@ class Enterpay_LaskuYritykselle_Model_Sales_Order_Creditmemo_Total_Paymentcharge
         $creditmemo->setBasePaymentCharge($amount);
 
         $creditmemo->setGrandTotal($creditmemo->getGrandTotal() +
-            $creditmemo->getPaymentCharge()
+            $creditmemo->getPaymentCharge() + $helper->getPaymentChargeTaxAmount($invoice->getPaymentCharge(), 
+            $helper->getPaymentChargeTaxRate())
         );
         $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() +
-            $creditmemo->getBasePaymentCharge()
+            $creditmemo->getBasePaymentCharge() + $helper->getPaymentChargeTaxAmount($invoice->getPaymentCharge(), 
+            $helper->getPaymentChargeTaxRate())
         );
 
         return $this;

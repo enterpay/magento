@@ -21,6 +21,7 @@ class Enterpay_LaskuYritykselle_Block_Sales_Order_Totals
 
         $totals = $this->_totals;
         $newTotals = array();
+        $helper = Mage::helper("laskuyritykselle");
 
         if (count($totals) > 0) {
 
@@ -31,7 +32,7 @@ class Enterpay_LaskuYritykselle_Block_Sales_Order_Totals
                         $newTotals['payment_charge'] = new Varien_Object(array(
                                 'code' => 'payment_charge',
                                 'field' => 'payment_charge',
-                                'value' => $source->getPaymentCharge(),
+                                'value' => $source->getPaymentCharge() + ($helper->showPaymentChargeInclTax()?$helper->getPaymentChargeTaxAmount($source->getPaymentCharge(), $helper->getPaymentChargeTaxRate()):0),
                                 'label' => $this->__('Payment Charge')
                             )
                         );
