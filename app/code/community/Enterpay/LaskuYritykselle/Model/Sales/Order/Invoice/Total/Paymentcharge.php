@@ -12,13 +12,25 @@ class Enterpay_LaskuYritykselle_Model_Sales_Order_Invoice_Total_Paymentcharge
         $amount = $invoice->getOrder()->getBasePaymentCharge();
         $invoice->setBasePaymentCharge($amount);
 
+        $invoice->setSubtotal($invoice->getSubtotal() +
+            $invoice->getPaymentCharge()
+        );
+        $invoice->setBaseSubtotal($invoice->getBaseSubtotal() +
+            $invoice->getBasePaymentCharge()
+        );
+
+        $invoice->setSubtotalInclTax($invoice->getSubtotalInclTax() +
+            $invoice->getPaymentCharge()
+        );
+        $invoice->setBaseSubtotalInclTax($invoice->getBaseSubtotalInclTax() +
+            $invoice->getBasePaymentCharge()
+        );
+
         $invoice->setGrandTotal($invoice->getGrandTotal() +
-            $invoice->getPaymentCharge() + $helper->getPaymentChargeTaxAmount($invoice->getPaymentCharge(), 
-            $helper->getPaymentChargeTaxRate())
+            $invoice->getPaymentCharge()
         );
         $invoice->setBaseGrandTotal($invoice->getBaseGrandTotal() +
-            $invoice->getBasePaymentCharge()+ $helper->getPaymentChargeTaxAmount($invoice->getPaymentCharge(), 
-            $helper->getPaymentChargeTaxRate())
+            $invoice->getBasePaymentCharge()
         );
 
         return $this;

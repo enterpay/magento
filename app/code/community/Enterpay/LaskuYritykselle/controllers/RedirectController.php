@@ -154,12 +154,7 @@ class Enterpay_LaskuYritykselle_RedirectController
 
     protected function _saveInvoice(Mage_Sales_Model_Order $order) {
         if ($order->canInvoice()) {
-            $helper = Mage::helper('laskuyritykselle');
             $invoice = $order->prepareInvoice();
-            $invoice->setSubtotal($order->getSubtotal() + $order->getPaymentCharge());
-            $invoice->setSubtotalInclTax($order->getSubtotal() + $order->getPaymentCharge() + $helper->getPaymentChargeTaxAmount($order->getPaymentCharge(), $helper->getPaymentChargeTaxRate()));
-            $invoice->setGrandTotal($order->getGrandTotal());
-            $invoice->setBaseGrandTotal($order->getBaseGrandTotal());
             $invoice->register()->capture();
             Mage::getModel('core/resource_transaction')->addObject($invoice)
                 ->addObject($invoice->getOrder())->save();
