@@ -16,11 +16,11 @@ class Enterpay_LaskuYritykselle_Model_Sales_Order_Creditmemo_Total_Paymentcharge
         $creditmemo->setBasePaymentCharge($amount);
 
         $creditmemo->setGrandTotal($creditmemo->getGrandTotal() +
-            $creditmemo->getPaymentCharge() + $helper->getPaymentChargeTaxAmount($invoice->getPaymentCharge(), 
+            $creditmemo->getPaymentCharge() + $helper->getPaymentChargeTaxAmount($creditmemo->getPaymentCharge(), 
             $helper->getPaymentChargeTaxRate())
         );
         $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() +
-            $creditmemo->getBasePaymentCharge() + $helper->getPaymentChargeTaxAmount($invoice->getPaymentCharge(), 
+            $creditmemo->getBasePaymentCharge() + $helper->getPaymentChargeTaxAmount($creditmemo->getPaymentCharge(), 
             $helper->getPaymentChargeTaxRate())
         );
 

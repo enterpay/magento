@@ -110,6 +110,8 @@
                 <totals>
                     <payment_charge>
                         <class>laskuyritykselle/sales_order_creditmemo_total_paymentcharge</class>
+						<before>grand_total</before>
+						<after>subtotal,discount,shipping,tax</after>
                     </payment_charge>
                 </totals>
             </order_creditmemo>
