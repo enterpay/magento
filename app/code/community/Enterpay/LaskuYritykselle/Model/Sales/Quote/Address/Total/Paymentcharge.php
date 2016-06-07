@@ -12,8 +12,14 @@ class Enterpay_LaskuYritykselle_Model_Sales_Quote_Address_Total_Paymentcharge
 
         parent::collect($address);
 
-        $this->_setBaseAmount(0)->_setAmount(0); // clear existing amount.
+		// clear existing amount.
+        $this->_setBaseAmount(0)->_setAmount(0); 
+		
+		// Clear existing payment charge 
         $address->setBasePaymentCharge(0)->setPaymentCharge(0);
+		// Clear existing payment charge also from quote
+		$address->getQuote()->setBasePaymentCharge(0)->setPaymentCharge(0);
+
 
         // No payment charge if no items.
         $items = $address->getAllItems();
