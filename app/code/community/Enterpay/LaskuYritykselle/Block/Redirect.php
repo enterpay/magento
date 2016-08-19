@@ -12,7 +12,7 @@ class Enterpay_LaskuYritykselle_Block_Redirect extends Mage_Core_Block_Abstract
         }
 
         // Varien_Data_Form adds fields to the form, so we render it ourselves
-        $html = '<html><body><form method="POST" id="pay" action="' . $action .
+        $html = '<html><body><form method="POST" accept-charset="UTF-8" onsubmit="document.charset = \'UTF-8\'" id="pay" action="' . $action .
             '">';
         $html .= $this->__('Redirecting to Lasku yritykselle.');
 
